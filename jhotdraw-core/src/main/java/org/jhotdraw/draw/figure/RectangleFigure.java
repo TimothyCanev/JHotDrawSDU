@@ -43,6 +43,7 @@ public class RectangleFigure extends AbstractAttributedFigure {
         g.fill(r);
     }
 
+    
     @Override
     protected void drawStroke(Graphics2D g) {
         Rectangle2D.Double r = (Rectangle2D.Double) rectangle.clone();
@@ -54,8 +55,7 @@ public class RectangleFigure extends AbstractAttributedFigure {
     // SHAPE AND BOUNDS
     @Override
     public Rectangle2D.Double getBounds() {
-        Rectangle2D.Double bounds = (Rectangle2D.Double) rectangle.clone();
-        return bounds;
+        return (Rectangle2D.Double) rectangle.clone();
     }
 
     @Override
@@ -110,11 +110,12 @@ public class RectangleFigure extends AbstractAttributedFigure {
         return rectangle.clone();
     }
 
-    @Override
-    public RectangleFigure clone() {
-        RectangleFigure that = (RectangleFigure) super.clone();
-        that.rectangle = (Rectangle2D.Double) this.rectangle.clone();
-        return that;
-    }
+public RectangleFigure(RectangleFigure template) {
+    // A constructor should only initialize 'this' object
+    this.rectangle = (Rectangle2D.Double) template.rectangle.clone();
+    
+    // An invariant check (Step 5 of your lab)
+    assert this.rectangle != null : "Rectangle data cannot be null";
+}
     // EVENT HANDLING
 }
